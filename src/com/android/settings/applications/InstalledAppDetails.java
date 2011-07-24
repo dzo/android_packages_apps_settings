@@ -236,12 +236,8 @@ public class InstalledAppDetails extends Activity
             mCanBeOnSdCardChecker.init();
             moveDisable = !mCanBeOnSdCardChecker.check(mAppEntry.info);
         }
-        if (moveDisable) {
-            mMoveAppButton.setEnabled(false);
-        } else {
-            mMoveAppButton.setOnClickListener(this);
-            mMoveAppButton.setEnabled(true);
-        }
+        mMoveAppButton.setOnClickListener(this);
+        mMoveAppButton.setEnabled(true);
     }
 
     private void initUninstallButtons() {
