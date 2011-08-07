@@ -96,6 +96,18 @@
             <intent android:action="android.settings.SYNC_SETTINGS" />
         </com.android.settings.IconPreferenceScreen>
 
+        <!-- CPU settings -->
+
+        <com.android.settings.IconPreferenceScreen
+            settings:icon="@drawable/ic_settings_cpu"
+            android:title="@string/cpu_settings_title"
+            android:key="cpu_settings">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.settings"
+                android:targetClass="com.android.settings.CPUActivity" />
+        </com.android.settings.IconPreferenceScreen>
+
         <!-- Privacy -->
 
         <com.android.settings.IconPreferenceScreen
@@ -106,6 +118,18 @@
                 android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.PrivacySettings" />
+        </com.android.settings.IconPreferenceScreen>
+
+        <!-- Status bar -->
+
+        <com.android.settings.IconPreferenceScreen
+            settings:icon="@drawable/ic_settings_statusbar"
+            android:title="@string/statusbar_settings"
+            android:key="statusbar_settings">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.settings"
+                android:targetClass="com.android.settings.StatusBarActivity" />
         </com.android.settings.IconPreferenceScreen>
 
         <!-- Storage -->

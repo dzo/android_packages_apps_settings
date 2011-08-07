@@ -21,4 +21,10 @@
     <!-- If false, MIN is displayed. If true, MSID is displayed. -->
     <bool name="config_msid_enable" translatable="false">false</bool>
 
+    <!-- Network mode -->
+    <bool name="has_networkmode_button">true</bool>
+
+    <!-- LED Flashlight -->
+    <bool name="has_led_flash">true</bool>
+
 </resources>
