@@ -18,4 +18,9 @@
     <dimen name="vpn_connect_margin_right">10sp</dimen>
     <dimen name="vpn_connect_normal_text_size">16sp</dimen>
     <dimen name="vpn_connect_input_box_label_width">90sp</dimen>
+
+    <!-- height of a normal list item in edit playlist mode -->
+    <dimen name="normal_height">64dip</dimen>
+    <!-- height of an expanded list item in edit playlist mode -->
+    <dimen name="expanded_height">128dip</dimen>
 </resources>
