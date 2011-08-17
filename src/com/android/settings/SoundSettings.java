@@ -39,6 +39,8 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.IWindowManager;
 
+import com.android.settings.CPUActivity;
+
 public class SoundSettings extends PreferenceActivity implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "SoundAndDisplaysSettings";
@@ -303,6 +305,8 @@ public class SoundSettings extends PreferenceActivity implements
         } else if (preference == mHapticFeedback) {
             Settings.System.putInt(getContentResolver(), Settings.System.HAPTIC_FEEDBACK_ENABLED,
                     mHapticFeedback.isChecked() ? 1 : 0);
+            CPUActivity.writeOneLine(CPUActivity.HAPTIC_FILE, mHapticFeedback.isChecked() ? "30" : "0");
+            CPUActivity.writeOneLine(CPUActivity.HAPTIC_FILE1, mHapticFeedback.isChecked() ? "30" : "0");
 
         } else if (preference == mLockSounds) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SOUNDS_ENABLED,

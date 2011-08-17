@@ -28,6 +28,10 @@ import android.preference.PreferenceScreen;
 import android.preference.CheckBoxPreference;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.android.settings.CPUActivity;
 
 /*
  * Displays preferences for application developers.
@@ -39,11 +43,13 @@ public class DevelopmentSettings extends PreferenceActivity
     private static final String KEEP_SCREEN_ON = "keep_screen_on";
     private static final String ALLOW_MOCK_LOCATION = "allow_mock_location";
     private static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
+    public static final String LED_OFF_WHILE_ASLEEP = "led_off_while_asleep";
 
     private CheckBoxPreference mEnableAdb;
     private CheckBoxPreference mKeepScreenOn;
     private CheckBoxPreference mAllowMockLocation;
     private CheckBoxPreference mKillAppLongpressBack;
+    private CheckBoxPreference mLedOff;
 
     // To track whether Yes was clicked in the adb warning dialog
     private boolean mOkClicked;
@@ -60,11 +66,14 @@ public class DevelopmentSettings extends PreferenceActivity
         mKeepScreenOn = (CheckBoxPreference) findPreference(KEEP_SCREEN_ON);
         mAllowMockLocation = (CheckBoxPreference) findPreference(ALLOW_MOCK_LOCATION);
         mKillAppLongpressBack = (CheckBoxPreference) findPreference(KILL_APP_LONGPRESS_BACK);
+        mLedOff = (CheckBoxPreference) findPreference(LED_OFF_WHILE_ASLEEP);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         mEnableAdb.setChecked(Settings.Secure.getInt(getContentResolver(),
                 Settings.Secure.ADB_ENABLED, 0) != 0);
@@ -74,6 +83,8 @@ public class DevelopmentSettings extends PreferenceActivity
                 Settings.Secure.ALLOW_MOCK_LOCATION, 0) != 0);
         mKillAppLongpressBack.setChecked(Settings.Secure.getInt(getContentResolver(),
                 Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
+        mLedOff.setChecked(prefs.getBoolean(
+                DevelopmentSettings.LED_OFF_WHILE_ASLEEP, true) );
     }
 
     @Override
@@ -108,6 +119,8 @@ public class DevelopmentSettings extends PreferenceActivity
         } else if (preference == mKillAppLongpressBack) {
             Settings.Secure.putInt(getContentResolver(), Settings.Secure.KILL_APP_LONGPRESS_BACK,
                     mKillAppLongpressBack.isChecked() ? 1 : 0);
+        } else if (preference == mLedOff) {
+            CPUActivity.writeOneLine(CPUActivity.LED_FILE, mLedOff.isChecked() ? "1" : "0");
         }
 
         return false;

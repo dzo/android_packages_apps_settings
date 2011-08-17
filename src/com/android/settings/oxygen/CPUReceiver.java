@@ -25,6 +25,8 @@ import android.content.SharedPreferences;
 import android.os.SystemProperties;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.content.ContentResolver;
+import android.provider.Settings;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,6 +51,13 @@ public class CPUReceiver extends BroadcastReceiver {
     private void configureCPU(Context ctx) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
 
+	if(Settings.System.getInt(ctx.getContentResolver(),Settings.System.HAPTIC_FEEDBACK_ENABLED, 0)==0) {
+            CPUActivity.writeOneLine(CPUActivity.HAPTIC_FILE, "0");
+            CPUActivity.writeOneLine(CPUActivity.HAPTIC_FILE1, "0");
+	}
+        if (!prefs.getBoolean(DevelopmentSettings.LED_OFF_WHILE_ASLEEP,true)) {
+            CPUActivity.writeOneLine(CPUActivity.LED_FILE, "0");       
+        }
         if (prefs.getBoolean(CPUActivity.SOB_PREF, false) == false) {
             Log.i(TAG, "Restore disabled by user preference.");
             return;

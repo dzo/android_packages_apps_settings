@@ -42,6 +42,9 @@ public class CPUActivity extends PreferenceActivity implements
     public static final String FREQ_LIST_FILE = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies";
     public static final String FREQ_MAX_FILE = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq";
     public static final String FREQ_MIN_FILE = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq";
+    public static final String HAPTIC_FILE = "/sys/module/synaptics_i2c_rmi_1564/parameters/vibrate";
+    public static final String HAPTIC_FILE1 = "/sys/module/atmel_i2c_rmi_QT602240/parameters/vibrate";
+    public static final String LED_FILE = "/sys/module/RGB_led/parameters/off_when_suspended";
     public static final String SOB_PREF = "pref_set_on_boot";
 
     private static final String TAG = "CPUSettings";

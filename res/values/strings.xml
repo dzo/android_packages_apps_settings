@@ -2077,6 +2077,10 @@ found in the list of installed applications.</string>
     <string name="kill_app_longpress_back">Stop app via long-press</string>
     <!-- Setting checkbox summary whether to allow killing foreground app by longpress on BACK. -->
     <string name="kill_app_longpress_back_summary">Long-pressing the BACK button will kill the foreground application.</string>
+    <!-- Setting checkbox title whether to switch led off when asleep. -->
+    <string name="led_off_while_asleep">Turn off LED while phone sleeps</string>
+    <!-- Setting checkbox title whether to switch led off when asleep. -->
+    <string name="led_off_while_asleep_summary">Save power by turning off the notification LED when phone is asleep</string>
     <!-- Title of warning dialog about the implications of enabling USB debugging -->
     <string name="adb_warning_title">Allow USB debugging?</string>
     <!-- Warning text to user about the implications of enabling USB debugging -->
