@@ -6,7 +6,7 @@
     <string name="msg_color_picker">Tap on center color to confirm.\nPress back to cancel</string>
 
     <!-- CPU Settings strings -->
-    <string name="cpu_settings_title">CPU settings</string>
+    <string name="cpu_settings_title">CPU</string>
     <string name="cpu_title">CPU settings</string>
     <string name="cpu_summary">Governor and clock settings</string>
     <string name="cpu_governors_title">Available governors</string>
