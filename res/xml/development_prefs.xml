@@ -42,4 +42,11 @@
         android:title="@string/led_off_while_asleep"
         android:summary="@string/led_off_while_asleep_summary" />
 
+     <CheckBoxPreference
+        android:key="volume_wake"
+        android:title="@string/volume_wake"
+        android:summary="@string/volume_wake_summary" />
+
+
+
 </PreferenceScreen>

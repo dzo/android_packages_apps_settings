@@ -44,12 +44,16 @@ public class DevelopmentSettings extends PreferenceActivity
     private static final String ALLOW_MOCK_LOCATION = "allow_mock_location";
     private static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
     public static final String LED_OFF_WHILE_ASLEEP = "led_off_while_asleep";
+    public static final String VOLUME_WAKE = "volume_wake";
+
 
     private CheckBoxPreference mEnableAdb;
     private CheckBoxPreference mKeepScreenOn;
     private CheckBoxPreference mAllowMockLocation;
     private CheckBoxPreference mKillAppLongpressBack;
     private CheckBoxPreference mLedOff;
+    private CheckBoxPreference mVolumeWake;
+
 
     // To track whether Yes was clicked in the adb warning dialog
     private boolean mOkClicked;
@@ -67,6 +71,7 @@ public class DevelopmentSettings extends PreferenceActivity
         mAllowMockLocation = (CheckBoxPreference) findPreference(ALLOW_MOCK_LOCATION);
         mKillAppLongpressBack = (CheckBoxPreference) findPreference(KILL_APP_LONGPRESS_BACK);
         mLedOff = (CheckBoxPreference) findPreference(LED_OFF_WHILE_ASLEEP);
+        mVolumeWake = (CheckBoxPreference) findPreference(VOLUME_WAKE);
     }
 
     @Override
@@ -85,6 +90,8 @@ public class DevelopmentSettings extends PreferenceActivity
                 Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
         mLedOff.setChecked(prefs.getBoolean(
                 DevelopmentSettings.LED_OFF_WHILE_ASLEEP, true) );
+        mVolumeWake.setChecked(Settings.Secure.getInt(getContentResolver(),
+                Settings.Secure.VOLUME_WAKE_SCREEN, 0) != 0 );
     }
 
     @Override
@@ -121,6 +128,9 @@ public class DevelopmentSettings extends PreferenceActivity
                     mKillAppLongpressBack.isChecked() ? 1 : 0);
         } else if (preference == mLedOff) {
             CPUActivity.writeOneLine(CPUActivity.LED_FILE, mLedOff.isChecked() ? "1" : "0");
+        } else if (preference == mVolumeWake) {
+           Settings.Secure.putInt(getContentResolver(), Settings.Secure.VOLUME_WAKE_SCREEN,
+                   mVolumeWake.isChecked() ? 1 : 0);
         }
 
         return false;
